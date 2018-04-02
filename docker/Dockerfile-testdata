@@ -1,0 +1,12 @@
+# Based on the PostgreSQL Docker Community image: https://hub.docker.com/_/postgres/
+
+FROM postgres:9.6.2-alpine
+
+MAINTAINER Dan Dowma, dan@dowma.com
+
+# Used by POSTGRES base image to set default credentials and database
+ENV POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres
+
+# Initialize the test database. *.sh and *.sql in this directory will be executed upon container creation.
+ADD 1-init-schema.sh /docker-entrypoint-initdb.d/1-init-schema.sh
+ADD 2-init-testdata.sql /docker-entrypoint-initdb.d/2-init-testdata.sql

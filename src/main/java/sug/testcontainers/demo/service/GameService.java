@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import sug.testcontainers.demo.dao.GameRepository;
 import sug.testcontainers.demo.model.Game;
 
+import java.util.List;
+
 @Service
 public class GameService {
 
@@ -17,4 +19,7 @@ public class GameService {
         return gameRepository.save(game);
     }
 
+    List<Game> getAllGames() {
+        return (List<Game>)gameRepository.findAll();
+    }
 }

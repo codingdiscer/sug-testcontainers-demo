@@ -1,0 +1,7 @@
+---
+version: '2'
+services:
+  sug-testcontainers-demo-db-testdata:
+    image: sug-testcontainers-demo-db:testdata
+    ports:
+      - "5432:5432"

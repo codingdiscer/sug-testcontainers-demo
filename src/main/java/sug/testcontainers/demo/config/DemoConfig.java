@@ -2,6 +2,7 @@ package sug.testcontainers.demo.config;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories("sug.testcontainers.dao")
+@EnableJpaRepositories("sug.testcontainers.demo")
 public class DemoConfig {
 
     @Autowired DataSource dataSource;
@@ -25,7 +26,7 @@ public class DemoConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
         em.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        em.setPackagesToScan("sug.testcontainers.demo.dao");
+        em.setPackagesToScan("sug.testcontainers.demo");
         return em;
     }
 
