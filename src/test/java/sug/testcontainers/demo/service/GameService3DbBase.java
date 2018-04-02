@@ -2,16 +2,13 @@ package sug.testcontainers.demo.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,12 +19,15 @@ import sug.testcontainers.demo.model.GameComplexity;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Performs an integration test starting with a custom docker image that contains just a
+ * schema and empty tables
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(initializers = GameService3DbBase.Initializer.class, classes = { DemoApplication.class })
 @Slf4j
@@ -110,6 +110,5 @@ public class GameService3DbBase {
         // sleep to allow time to check the db
         //Thread.sleep(240000);
     }
-
 
 }

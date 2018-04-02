@@ -10,15 +10,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.testcontainers.containers.GenericContainer;
 
-import javax.sql.DataSource;
 import java.time.LocalTime;
 import java.util.Random;
 
+/**
+ * Helper class that knows how to look for a existing data source,
+ * or spin up a docker instance otherwise.
+ */
 @Slf4j
 public class GameServiceTestHelper {
 
     static final String DB_IMAGE = "sug-testcontainers-demo-db:testdata";
-    static final String DB_URL_TEMPLATE = "jdbc:postgresql://%s:%d/postgres";
+    static final String DB_URL_TEMPLATE = "jdbc:postgresql://%s:%d/postgres?loggerLevel=OFF";
     static final String DB_DRIVER = "org.postgresql.Driver";
     static final String DB_LOCAL_USERNAME = "postgres";
     static final String DB_LOCAL_PASSWORD = "postgres";
@@ -70,7 +73,6 @@ public class GameServiceTestHelper {
             localDb.setUrl(String.format(DB_URL_TEMPLATE, DB_LOCAL_HOSTNAME, DB_PORT));
             localDb.setUsername(DB_LOCAL_USERNAME);
             localDb.setPassword(DB_LOCAL_PASSWORD);
-
             // execute a validation query - this will either succeed quietly or throw an exception
             new JdbcTemplate(localDb).queryForRowSet(VALIDATION_QUERY);
         } catch(RuntimeException e) {
@@ -93,7 +95,9 @@ public class GameServiceTestHelper {
 
     /**
      * Polls the db using on the given data source to verify that the data source is queryable,
-     * or throw an exception if the max amount of time is spent waiting.
+     * or throw an exception if the max amount of time is spent waiting.  This is necessary because
+     * the docker container declares itself ready (isRunning=true) before the db instance is
+     * ready to take queries...thus, we poll until the validation query returns successfully.
      */
     static void waitForDb(DriverManagerDataSource db) throws InterruptedException {
         LocalTime startTime = LocalTime.now();

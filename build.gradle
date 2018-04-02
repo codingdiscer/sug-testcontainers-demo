@@ -1,11 +1,9 @@
 buildscript {
 	ext {
 		springBootVersion = '2.0.0.RELEASE'
-
 		junitJupiterVersion = '5.1.0'
 		junitPlatformVersion = '1.1.0'
-
-
+		testcontainersVersion = '1.6.0'
 	}
 	repositories {
 		mavenCentral()
@@ -35,22 +33,14 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('org.testcontainers:postgresql:1.6.0')
-	testCompile('org.testcontainers:testcontainers:1.6.0')
 	testRuntime('org.postgresql:postgresql')
-
-
-
+	testCompile("org.testcontainers:postgresql:${testcontainersVersion}")
+	testCompile("org.testcontainers:testcontainers:${testcontainersVersion}")
 	testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
 	testCompile("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+	testCompile("org.junit.jupiter:junit-jupiter-migrationsupport:${junitJupiterVersion}")
+	testCompile("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
 	testCompile("org.junit.platform:junit-platform-engine:${junitPlatformVersion}")
 	testCompile("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
 	testCompile("org.junit.vintage:junit-vintage-engine:${junitJupiterVersion}")
-	testCompile("org.junit.jupiter:junit-jupiter-migrationsupport:${junitJupiterVersion}")
-	testCompile("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
-
-
-	
-	
-	//testCompile('org.junit')
 }

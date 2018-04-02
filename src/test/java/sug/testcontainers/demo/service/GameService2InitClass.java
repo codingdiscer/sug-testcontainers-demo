@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import sug.testcontainers.demo.DemoApplication;
@@ -17,15 +16,17 @@ import sug.testcontainers.demo.model.GameComplexity;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Performs an integration test starting with an empty postgres instance, and prepare
+ * the schema and populate the table programmatically
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(initializers = GameService2InitClass.Initializer.class, classes = { DemoApplication.class })
-@DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @Slf4j
 public class GameService2InitClass {
 
@@ -75,6 +76,5 @@ public class GameService2InitClass {
         // sleep to allow time to check the db
         //Thread.sleep(240000);
     }
-
 
 }

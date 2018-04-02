@@ -23,6 +23,10 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Performs an integration test starting with a custom docker image that contains a schema
+ * and some test data
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(initializers = GameService4DbTestdata.Initializer.class, classes = { DemoApplication.class })
 @Slf4j

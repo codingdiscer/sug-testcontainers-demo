@@ -1,29 +1,23 @@
 package sug.testcontainers.demo.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.ClassRule;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.util.TestPropertyValues;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.testcontainers.containers.GenericContainer;
 import sug.testcontainers.demo.DemoApplication;
 import sug.testcontainers.demo.model.Game;
 import sug.testcontainers.demo.model.GameComplexity;
 
 import javax.sql.DataSource;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Simple test case that lets the GameServiceTestHelper prepare the data source
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(initializers = GameServiceTestHelper.Initializer.class, classes = { DemoApplication.class })
 @Slf4j

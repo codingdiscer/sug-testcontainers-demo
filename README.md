@@ -15,7 +15,7 @@ __Build the postgres image with just the schema__
 $ docker build -f docker/Dockerfile-base -t sug-testcontainers-demo-db:base ./docker
 ```
 
-__and run that image on the default postgres port (5432)...__
+__...and run that image on the default postgres port (5432)...__
 
 ```
 $ docker-compose -f docker/docker-compose-base.yml up
@@ -29,7 +29,7 @@ __Build the postgres image with the schema and some test data__
 $ docker build -f docker/Dockerfile-testdata -t sug-testcontainers-demo-db:testdata ./docker
 ```
 
-__and run that image on the default postgres port (5432)...__
+__...and run that image on the default postgres port (5432)...__
 
 ```
 $ docker-compose -f docker/docker-compose-testdata.yml up
