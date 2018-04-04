@@ -44,12 +44,12 @@ public class GameService3DbBase {
             try {
                 // point the data source at the docker container
                 DriverManagerDataSource dataSource = new DriverManagerDataSource();
-                dataSource.setDriverClassName(GameServiceTestHelper.DB_DRIVER);
+                dataSource.setDriverClassName(GameServiceTestHelper.DB_DRIVER);     //"org.postgresql.Driver"
                 dataSource.setUrl(String.format(GameServiceTestHelper.DB_URL_TEMPLATE,
                         GameServiceTestHelper.DB_LOCAL_HOSTNAME,
-                        postgres.getMappedPort(GameServiceTestHelper.DB_PORT)));
-                dataSource.setUsername(GameServiceTestHelper.DB_LOCAL_USERNAME);
-                dataSource.setPassword(GameServiceTestHelper.DB_LOCAL_PASSWORD);
+                        postgres.getMappedPort(GameServiceTestHelper.DB_PORT)));    //jdbc:postgresql://localhost:{port}/postgres
+                dataSource.setUsername(GameServiceTestHelper.DB_LOCAL_USERNAME);    //"postgres"
+                dataSource.setPassword(GameServiceTestHelper.DB_LOCAL_PASSWORD);    //"postgres"
 
                 // wait for the db to be fully ready
                 GameServiceTestHelper.waitForDb(dataSource);

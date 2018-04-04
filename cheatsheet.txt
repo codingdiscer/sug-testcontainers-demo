@@ -1,0 +1,13 @@
+browser prep:
+
+- https://docs.google.com/presentation/d/19bfLCYIpYBQ84kZ13FofPN8reJJGVj_57MqqXOQftZ0/edit#slide=id.g362de60368_0_105
+- https://www.testcontainers.org/
+- https://github.com/codingdiscer/sug-testcontainers-demo#spring-user-group---testcontainers-demo
+
+
+open file prep:
+- GameService1InitScript
+
+
+command prompt:
+- open to the sug-testcontainers-demo project folder

@@ -78,7 +78,7 @@ public class GameService4DbTestdata {
 
     @Test
     public void testGameServiceOperations() throws Exception {
-        // should be 3 games
+        // should        be 3 games
         assertEquals(gameService.getAllGames().size(), 3);
 
         // save a new game...make sure the id gets auto-assigned
